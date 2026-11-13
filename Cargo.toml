@@ -1,0 +1,15 @@
+[workspace]
+resolver = "3"
+members = ["apps/desktop/src-tauri"]
+
+[workspace.package]
+edition = "2024"
+license = "AGPL-3.0-only"
+publish = false
+
+# Release builds are optimised for a small binary.
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+strip = true
