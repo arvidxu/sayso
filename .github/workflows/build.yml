@@ -1,0 +1,179 @@
+name: Release
+
+on:
+  push:
+    tags: ['[0-9]+.[0-9]+.[0-9]+*']
+
+permissions:
+  contents: read
+
+# Release settings live in the "release" section of product.conf.json; the prepare job reads them
+# and passes them to the other jobs.
+jobs:
+  prepare:
+    outputs:
+      builds: ${{ steps.plan.outputs.builds }}
+      settings: ${{ steps.plan.outputs.settings }}
+    # This job reads the settings, so its own machine and time limit cannot come from them.
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          # The history of the default branch, for the tag check below.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: package.json
+
+      - name: Check that the tag points to a commit on the default branch
+        run: node scripts/release/release.mjs check-tag
+
+      - name: Plan the release
+        id: plan
+        env:
+          MAC_SELF_HOSTED_RUNNER: ${{ vars.MAC_SELF_HOSTED_RUNNER }}
+        run: node scripts/release/release.mjs plan
+
+      - name: Check release settings
+        env:
+          GH_TOKEN: ${{ secrets.RELEASES_REPOSITORY && secrets.RELEASES_TOKEN || github.token }}
+          RELEASES_REPOSITORY: ${{ secrets.RELEASES_REPOSITORY }}
+          RELEASES_TOKEN_SET: ${{ secrets.RELEASES_TOKEN != '' }}
+        run: node scripts/release/release.mjs check
+
+  # Installers are built only from a commit whose check passed.
+  wait-for-check:
+    name: Wait for the check
+    needs: prepare
+    permissions:
+      actions: read
+      contents: read
+    runs-on: ${{ fromJSON(needs.prepare.outputs.settings).runners.linux }}
+    timeout-minutes: ${{ fromJSON(needs.prepare.outputs.settings).timeoutMinutes.checkWait }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: package.json
+
+      - name: Wait until the check of this commit passes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/release/release.mjs wait-for-check
+
+  build:
+    name: Build (${{ matrix.name }})
+    needs: [prepare, wait-for-check]
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.prepare.outputs.builds) }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: ${{ fromJSON(needs.prepare.outputs.settings).timeoutMinutes.build }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Install Linux system dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf xdg-utils
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: package.json
+
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6
+
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: stable
+          targets: ${{ matrix.targets }}
+
+      # No build cache: one saved by a tag's run is only ever restored by that tag, so it would only
+      # fill the cache quota.
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build desktop installers
+        run: node scripts/release/release.mjs desktop-package ${{ matrix.targets }}
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+          WINDOWS_CERTIFICATE: ${{ secrets.WINDOWS_CERTIFICATE }}
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+          WINDOWS_TIMESTAMP_URL: ${{ secrets.WINDOWS_TIMESTAMP_URL }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+          TAURI_SIGNING_PUBLIC_KEY: ${{ vars.TAURI_SIGNING_PUBLIC_KEY }}
+          # The update address built into the app points at the repository that gets the releases.
+          RELEASES_REPOSITORY: ${{ secrets.RELEASES_REPOSITORY }}
+
+      - name: Retain desktop installers
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: desktop-${{ matrix.name }}
+          path: ${{ runner.temp }}/release-output/desktop/*
+          if-no-files-found: error
+          retention-days: ${{ fromJSON(needs.prepare.outputs.settings).artifactRetentionDays }}
+
+  release:
+    name: GitHub release
+    needs: [prepare, build]
+    # Releases commit to the releases repository one at a time.
+    concurrency:
+      group: release
+      cancel-in-progress: false
+    # Needed only when releases go to this repository; a releases repository uses RELEASES_TOKEN.
+    permissions:
+      contents: write
+    runs-on: ${{ fromJSON(needs.prepare.outputs.settings).runners.linux }}
+    timeout-minutes: ${{ fromJSON(needs.prepare.outputs.settings).timeoutMinutes.release }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          # The write token of this job is used only by the publish step.
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: package.json
+
+      - name: Download built installers
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          path: ${{ runner.temp }}/release-files
+          pattern: desktop-*
+          merge-multiple: true
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ secrets.RELEASES_REPOSITORY && secrets.RELEASES_TOKEN || github.token }}
+          RELEASES_REPOSITORY: ${{ secrets.RELEASES_REPOSITORY }}
+        run: node scripts/release/release.mjs publish "$RUNNER_TEMP/release-files"
+
+  # Starts the retry workflow only when a job failed or got no machine (GitHub marks that job
+  # cancelled), so a passing release leaves no retry run. A release cancelled by hand is not retried.
+  retry:
+    name: Retry runner shortages
+    needs: [prepare, wait-for-check, build, release]
+    if: ${{ !cancelled() && (contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: write
+    steps:
+      - name: Start the retry workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow run retry.yml -f run_id="$GITHUB_RUN_ID" -f run_attempt="$GITHUB_RUN_ATTEMPT"

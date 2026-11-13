@@ -1,0 +1,145 @@
+name: Check
+
+# Runs only when something it checks has changed, so a change to the docs alone starts nothing.
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/**'
+      - '.cargo/**'
+      - 'apps/**'
+      - 'crates/**'
+      - 'scripts/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '*.json'
+      - '!**/*.md'
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+      - '.cargo/**'
+      - 'apps/**'
+      - 'crates/**'
+      - 'scripts/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '*.json'
+      - '!**/*.md'
+
+permissions:
+  contents: read
+
+# A release waits for the check of its exact commit, so pushes to main never cancel each other.
+concurrency:
+  group: check-${{ github.event_name == 'pull_request' && github.ref || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  check:
+    outputs:
+      runners: ${{ steps.runners.outputs.runners }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: package.json
+
+      # A fixed release of the workflow linter, checked against its published checksum.
+      - name: Lint the workflows
+        env:
+          ACTIONLINT_VERSION: 1.7.12
+          ACTIONLINT_SHA256: 8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
+        run: |
+          archive="$RUNNER_TEMP/actionlint.tar.gz"
+          curl -fsSL --retry 5 --retry-all-errors -o "$archive" "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
+          echo "${ACTIONLINT_SHA256}  $archive" | sha256sum --check --strict
+          tar -xzf "$archive" -C "$RUNNER_TEMP" actionlint
+          "$RUNNER_TEMP/actionlint" -color
+
+      # The tests run on the machines the release builds on.
+      - name: Read the machine of each platform
+        id: runners
+        env:
+          MAC_SELF_HOSTED_RUNNER: ${{ vars.MAC_SELF_HOSTED_RUNNER }}
+        run: node scripts/release/release.mjs runners
+
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check
+        run: pnpm check
+
+  # The page is checked above on one system; the native side differs by system, so each one
+  # compiles, lints and tests it.
+  native:
+    needs: check
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [linux, windows, mac]
+    runs-on: ${{ fromJSON(needs.check.outputs.runners)[matrix.platform] }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      # Only what the Rust code compiles against: the web view for the app and ALSA for recording.
+      # A connection to a stalled package mirror is dropped after 30 seconds and tried again, up
+      # to three times, instead of holding the job.
+      - name: Install Linux system dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30
+          sudo apt-get install -y --no-install-recommends -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 libwebkit2gtk-4.1-dev libasound2-dev
+
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          toolchain: stable
+          components: clippy, rustfmt
+
+      # Pull requests read the cache that pushes to main keep up to date, without saving their own.
+      - uses: swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with:
+          save-if: ${{ github.ref == 'refs/heads/main' }}
+
+      # The app embeds the built page; an empty one is enough to compile against.
+      - name: Create the page folder
+        run: mkdir apps/desktop/dist
+        shell: bash
+
+      - name: Format
+        run: cargo fmt --all --check
+
+      - name: Lint
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+
+      - name: Test
+        run: cargo test --workspace --all-features
+
+  # Starts the retry workflow only when a job failed or got no machine (GitHub marks that job
+  # cancelled). A check cancelled by hand is not retried, and pull requests from forks get a
+  # read-only token, which cannot start it.
+  retry:
+    name: Retry runner shortages
+    needs: [check, native]
+    if: ${{ !cancelled() && (contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')) && !github.event.pull_request.head.repo.fork }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: write
+    steps:
+      - name: Start the retry workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow run retry.yml -f run_id="$GITHUB_RUN_ID" -f run_attempt="$GITHUB_RUN_ATTEMPT"

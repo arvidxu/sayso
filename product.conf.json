@@ -15,5 +15,41 @@
       "chartDays": 7,
       "typingWordsPerMinute": 40
     }
+  },
+  "release": {
+    "platforms": {
+      "mac": true,
+      "windows": true,
+      "linux": true
+    },
+    "runners": {
+      "linux": "ubuntu-latest",
+      "mac": "xcode-27",
+      "windows": "windows-latest"
+    },
+    "timeoutMinutes": {
+      "build": 120,
+      "release": 30,
+      "checkWait": 120
+    },
+    "checkWait": {
+      "pollSeconds": 30,
+      "restartMinutes": 3
+    },
+    "artifactRetentionDays": 7,
+    "retryAttempts": 50,
+    "updateEndpoints": [
+      "https://github.com/{releasesRepository}/releases/latest/download/latest.json"
+    ],
+    "desktop": {
+      "targets": {
+        "mac": ["aarch64-apple-darwin", "x86_64-apple-darwin"],
+        "windows": ["x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc"],
+        "linux": ["x86_64-unknown-linux-gnu", "aarch64-unknown-linux-gnu"]
+      },
+      "targetRunners": {
+        "aarch64-unknown-linux-gnu": "ubuntu-24.04-arm"
+      }
+    }
   }
 }
