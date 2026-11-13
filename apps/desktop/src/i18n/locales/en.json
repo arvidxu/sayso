@@ -1,0 +1,302 @@
+{
+  "nav": {
+    "home": "Home",
+    "history": "History",
+    "dictionary": "Dictionary",
+    "settings": "Settings",
+    "account": "Account",
+    "tagline": "Voice workspace",
+    "pages": "Pages"
+  },
+  "home": {
+    "shortcuts": {
+      "title": "Shortcuts",
+      "caption": "Coming soon"
+    },
+    "overview": {
+      "title": "Overview",
+      "period": "Last 30 days"
+    },
+    "stats": {
+      "words": {
+        "label": "Words dictated",
+        "note": "words"
+      },
+      "time": {
+        "label": "Speaking time",
+        "note": "Sessions: {{n}}"
+      },
+      "pace": {
+        "label": "Average pace",
+        "note": "words/min"
+      },
+      "learned": {
+        "label": "Words learned",
+        "note": "in the dictionary"
+      },
+      "saved": {
+        "label": "Time saved",
+        "note": "against typing at 40 words a minute"
+      }
+    },
+    "chart": {
+      "title": "Words per day",
+      "period": "Last 7 days",
+      "trend": "on the 7 days before"
+    },
+    "modes": {
+      "dictate": {
+        "name": "Dictate",
+        "description": "Hold and speak; the text is typed where your cursor is"
+      },
+      "translate": {
+        "name": "Translate",
+        "description": "Speak in one language, type in another"
+      },
+      "ask": {
+        "name": "Ask anything",
+        "description": "Ask a question, or about the text you selected"
+      }
+    }
+  },
+  "history": {
+    "search": "Search",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "noMatch": "No matches",
+    "copy": "Copy",
+    "empty": {
+      "title": "No history yet",
+      "description": "What you dictate is kept here, on this computer"
+    },
+    "filter": "Kind of entry",
+    "filters": {
+      "all": "All",
+      "dictation": "Dictation",
+      "ask": "Ask anything"
+    },
+    "closeSearch": "Close search",
+    "cloudSync": "Cloud sync is off",
+    "more": "More",
+    "select": "Select",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "exportRecording": "Export recording",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "selected_one": "{{count}} selected",
+    "selected_other": "{{count}} selected",
+    "deleteAll": {
+      "action": "Delete all…",
+      "title": "Delete all history?",
+      "description": "Every entry and its recording is removed from this computer. This cannot be undone.",
+      "confirm": "Delete all"
+    },
+    "answer": {
+      "show": "Answer",
+      "close": "Done"
+    },
+    "copied": "Copied",
+    "selectAll": "Select all",
+    "deselectAll": "Deselect all",
+    "stopSelecting": "Done selecting",
+    "player": {
+      "play": "Play recording",
+      "pause": "Pause",
+      "position": "Playback position"
+    },
+    "deleteSelected": {
+      "title_one": "Delete {{count}} entry?",
+      "title_other": "Delete {{count}} entries?",
+      "description": "They and their recordings are removed from this computer. This cannot be undone."
+    },
+    "noneOfKind": "Nothing of this kind yet"
+  },
+  "dictionary": {
+    "add": "Add word",
+    "filter": "Kind of word",
+    "filters": {
+      "all": "All",
+      "manual": "Manual",
+      "learned": "Learned"
+    },
+    "sources": {
+      "manual": "Manual",
+      "learned": "Learned"
+    },
+    "search": "Search",
+    "noMatch": "No matches",
+    "remove": "Remove {{word}}",
+    "empty": {
+      "all": {
+        "title": "No words yet",
+        "description": "Add names and terms that should be spelled your way"
+      },
+      "manual": {
+        "title": "Nothing added by you yet",
+        "description": "Add names and terms that should be spelled your way"
+      },
+      "learned": {
+        "title": "Nothing learned yet",
+        "description": "Words Sayso picks up from your corrections appear here"
+      }
+    },
+    "adding": {
+      "title": "Add a word",
+      "description": "Sayso will spell it exactly as you write it here.",
+      "field": "Word or name",
+      "known": "Already in the dictionary",
+      "cancel": "Cancel"
+    },
+    "closeSearch": "Close search",
+    "more": "More",
+    "select": "Select",
+    "stopSelecting": "Done selecting",
+    "selectAll": "Select all",
+    "deselectAll": "Deselect all",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "selected_one": "{{count}} selected",
+    "selected_other": "{{count}} selected",
+    "deleteAll": {
+      "action": "Delete all…",
+      "title": "Delete every word?",
+      "description": "Words you added and words Sayso learned are all removed. This cannot be undone.",
+      "confirm": "Delete all"
+    },
+    "deleteSelected": {
+      "title_one": "Delete {{count}} word?",
+      "title_other": "Delete {{count}} words?",
+      "description": "This cannot be undone."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "close": "Close",
+    "sections": {
+      "general": "General",
+      "appearance": "Appearance",
+      "models": "Models",
+      "advanced": "Advanced",
+      "about": "About"
+    },
+    "groups": {
+      "language": "Language",
+      "theme": "Theme",
+      "application": "Application",
+      "updates": "Updates",
+      "reset": "Reset",
+      "speechModels": "Speech models"
+    },
+    "interfaceLanguage": {
+      "title": "Interface language",
+      "description": "The language of Sayso's interface",
+      "system": "System",
+      "noMatch": "No language found.",
+      "names": {
+        "en": "English",
+        "zh-CN": "Simplified Chinese",
+        "zh-TW": "Traditional Chinese"
+      }
+    },
+    "reset": {
+      "title": "Restore default settings",
+      "description": "Language, theme, updates, and the window's size and position",
+      "action": "Restore Defaults…",
+      "confirmTitle": "Restore default settings?",
+      "confirmDescription": "The language, theme and update settings go back to their defaults, and the window to its original size and position.",
+      "confirm": "Restore",
+      "cancel": "Cancel"
+    },
+    "theme": {
+      "title": "Color scheme",
+      "description": "Light, dark, or match the system",
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "version": {
+      "title": "Version"
+    },
+    "updates": {
+      "automatic": {
+        "title": "Automatic updates",
+        "description": "Check for new versions in the background"
+      },
+      "manual": {
+        "title": "Check now"
+      },
+      "check": "Check for Updates…"
+    },
+    "models": {
+      "none": {
+        "title": "No models to download yet",
+        "description": "Models you can download for offline dictation will be listed here"
+      }
+    }
+  },
+  "updates": {
+    "notes": "What's new",
+    "checking": {
+      "title": "Checking for updates…"
+    },
+    "unavailable": {
+      "title": "Updates unavailable",
+      "description": "This build does not check for updates."
+    },
+    "latest": {
+      "title": "You're up to date",
+      "description": "Sayso {{version}} is the latest version."
+    },
+    "available": {
+      "title": "Sayso {{version}} is available",
+      "description": "A new version is ready to download."
+    },
+    "downloading": {
+      "title": "Downloading Sayso {{version}}…"
+    },
+    "ready": {
+      "title": "Sayso {{version}} is ready to install",
+      "description": "Restart Sayso to finish updating."
+    },
+    "failed": {
+      "title": "Update failed",
+      "description": "Check your connection and try again."
+    },
+    "actions": {
+      "ok": "OK",
+      "download": "Download",
+      "later": "Later",
+      "skip": "Skip This Version",
+      "restart": "Restart",
+      "cancel": "Cancel"
+    }
+  },
+  "native": {
+    "menu": {
+      "about": "About {{name}}",
+      "checkForUpdates": "Check for Updates…",
+      "settings": "Settings…",
+      "services": "Services",
+      "hide": "Hide {{name}}",
+      "hideOthers": "Hide Others",
+      "showAll": "Show All",
+      "quit": "Quit {{name}}",
+      "file": "File",
+      "closeWindow": "Close Window",
+      "edit": "Edit",
+      "undo": "Undo",
+      "redo": "Redo",
+      "cut": "Cut",
+      "copy": "Copy",
+      "paste": "Paste",
+      "selectAll": "Select All",
+      "view": "View",
+      "fullscreen": "Toggle Full Screen",
+      "window": "Window",
+      "minimize": "Minimize",
+      "zoom": "Zoom",
+      "help": "Help"
+    }
+  }
+}

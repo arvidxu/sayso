@@ -1,0 +1,19 @@
+{
+  "updates": {
+    "firstCheckSeconds": 5,
+    "checkIntervalHours": 1,
+    "laterHours": 24,
+    "checkTimeoutSeconds": 30
+  },
+  "app": {
+    "showWindowAfterSeconds": 3,
+    "initialSettings": {
+      "automaticUpdates": true
+    },
+    "home": {
+      "periodDays": 30,
+      "chartDays": 7,
+      "typingWordsPerMinute": 40
+    }
+  }
+}

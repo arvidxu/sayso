@@ -1,0 +1,307 @@
+{
+  "nav": {
+    "home": "首頁",
+    "history": "歷史",
+    "dictionary": "詞典",
+    "settings": "設定",
+    "account": "帳號",
+    "tagline": "語音工作台",
+    "pages": "頁面"
+  },
+  "home": {
+    "shortcuts": {
+      "title": "快速鍵",
+      "caption": "即將可用"
+    },
+    "overview": {
+      "title": "概覽",
+      "period": "近 30 天"
+    },
+    "stats": {
+      "words": {
+        "label": "口述字數",
+        "note": "字"
+      },
+      "time": {
+        "label": "口述時長",
+        "note": "共 {{n}} 次"
+      },
+      "pace": {
+        "label": "平均語速",
+        "note": "字/分鐘"
+      },
+      "learned": {
+        "label": "已學詞條",
+        "note": "個"
+      },
+      "saved": {
+        "label": "節省時間",
+        "note": "以打字每分鐘 40 字估算"
+      }
+    },
+    "chart": {
+      "title": "每日字數",
+      "period": "最近 7 天",
+      "trend": "較前 7 天"
+    },
+    "modes": {
+      "dictate": {
+        "name": "聽寫",
+        "description": "按住說話，文字落在游標處"
+      },
+      "translate": {
+        "name": "翻譯",
+        "description": "說一種語言，輸出另一種"
+      },
+      "ask": {
+        "name": "隨便問",
+        "description": "直接提問，或就選取的文字提問"
+      }
+    }
+  },
+  "history": {
+    "search": "搜尋",
+    "today": "今天",
+    "yesterday": "昨天",
+    "noMatch": "沒有符合的記錄",
+    "copy": "複製",
+    "empty": {
+      "title": "還沒有歷史記錄",
+      "description": "口述過的內容會保存在這裡，只在這台電腦上"
+    },
+    "filter": "記錄類別",
+    "filters": {
+      "all": "全部",
+      "dictation": "聽寫",
+      "ask": "隨便問"
+    },
+    "closeSearch": "關閉搜尋",
+    "cloudSync": "雲端同步未開啟",
+    "more": "更多",
+    "select": "選取",
+    "delete": "刪除",
+    "cancel": "取消",
+    "exportRecording": "匯出錄音",
+    "showMore": "展開",
+    "showLess": "收合",
+    "selected_one": "已選 {{count}} 筆",
+    "selected_other": "已選 {{count}} 筆",
+    "deleteAll": {
+      "action": "全部刪除…",
+      "title": "要刪除全部歷史記錄嗎？",
+      "description": "所有記錄和它們的錄音都會從這台電腦上移除，無法復原。",
+      "confirm": "全部刪除"
+    },
+    "answer": {
+      "show": "查看回答",
+      "close": "完成"
+    },
+    "copied": "已複製",
+    "selectAll": "全選",
+    "deselectAll": "取消全選",
+    "stopSelecting": "結束選取",
+    "player": {
+      "play": "播放錄音",
+      "pause": "暫停",
+      "position": "播放進度"
+    },
+    "deleteSelected": {
+      "title_one": "要刪除選取的 {{count}} 筆記錄嗎？",
+      "title_other": "要刪除選取的 {{count}} 筆記錄嗎？",
+      "description": "這些記錄和它們的錄音都會從這台電腦上移除，無法復原。"
+    },
+    "noneOfKind": "還沒有這一類的記錄"
+  },
+  "dictionary": {
+    "add": "加入詞條",
+    "filter": "詞條類別",
+    "filters": {
+      "all": "全部",
+      "manual": "手動",
+      "learned": "自動學習"
+    },
+    "sources": {
+      "manual": "手動",
+      "learned": "自動學習"
+    },
+    "search": "搜尋",
+    "noMatch": "沒有符合的詞條",
+    "remove": "移除 {{word}}",
+    "empty": {
+      "all": {
+        "title": "還沒有詞條",
+        "description": "加入人名和術語，讓它們照你的寫法出現"
+      },
+      "manual": {
+        "title": "還沒有手動加入的詞條",
+        "description": "加入人名和術語，讓它們照你的寫法出現"
+      },
+      "learned": {
+        "title": "還沒有自動學習的詞條",
+        "description": "Sayso 從你的修正裡學到的詞會出現在這裡"
+      }
+    },
+    "adding": {
+      "title": "加入詞條",
+      "description": "Sayso 會完全照你在這裡寫的樣子輸出它。",
+      "field": "詞語或人名",
+      "known": "詞典裡已經有這個詞了",
+      "cancel": "取消"
+    },
+    "closeSearch": "關閉搜尋",
+    "more": "更多",
+    "select": "選取",
+    "stopSelecting": "結束選取",
+    "selectAll": "全選",
+    "deselectAll": "取消全選",
+    "delete": "刪除",
+    "cancel": "取消",
+    "selected_one": "已選 {{count}} 個",
+    "selected_other": "已選 {{count}} 個",
+    "deleteAll": {
+      "action": "全部刪除…",
+      "title": "要刪除全部詞條嗎？",
+      "description": "手動加入和自動學習的詞條都會被移除，無法復原。",
+      "confirm": "全部刪除"
+    },
+    "deleteSelected": {
+      "title_one": "要刪除選取的 {{count}} 個詞條嗎？",
+      "title_other": "要刪除選取的 {{count}} 個詞條嗎？",
+      "description": "刪除後無法復原。"
+    }
+  },
+  "settings": {
+    "title": "設定",
+    "close": "關閉",
+    "sections": {
+      "general": "一般",
+      "appearance": "外觀",
+      "models": "模型",
+      "advanced": "進階",
+      "about": "關於"
+    },
+    "groups": {
+      "language": "語言",
+      "theme": "主題",
+      "application": "應用程式",
+      "updates": "更新",
+      "reset": "重置",
+      "speechModels": "語音辨識模型"
+    },
+    "interfaceLanguage": {
+      "title": "介面語言",
+      "description": "Sayso 介面顯示的語言",
+      "system": "跟隨系統",
+      "noMatch": "沒有符合的語言。",
+      "names": {
+        "en": "英文",
+        "zh-CN": "簡體中文",
+        "zh-TW": "繁體中文"
+      }
+    },
+    "reset": {
+      "title": "還原預設設定",
+      "description": "語言、主題、更新，以及視窗的大小和位置",
+      "action": "還原預設設定…",
+      "confirmTitle": "要還原預設設定嗎？",
+      "confirmDescription": "語言、主題和更新設定會還原為預設值，視窗會回到原來的大小和位置。",
+      "confirm": "還原",
+      "cancel": "取消"
+    },
+    "theme": {
+      "title": "配色",
+      "description": "淺色、深色，或跟隨系統",
+      "system": "跟隨系統",
+      "light": "淺色",
+      "dark": "深色"
+    },
+    "version": {
+      "title": "版本"
+    },
+    "updates": {
+      "automatic": {
+        "title": "自動更新",
+        "description": "在背景檢查新版本"
+      },
+      "manual": {
+        "title": "手動檢查"
+      },
+      "check": "檢查更新…"
+    },
+    "models": {
+      "none": {
+        "title": "還沒有可下載的模型",
+        "description": "可下載到本機、用於離線辨識的模型會列在這裡"
+      }
+    }
+  },
+  "updates": {
+    "notes": "更新內容",
+    "checking": {
+      "title": "正在檢查更新…"
+    },
+    "unavailable": {
+      "title": "無法檢查更新",
+      "description": "此版本不會檢查更新。"
+    },
+    "latest": {
+      "title": "已是最新版本",
+      "description": "Sayso {{version}} 是最新版本。"
+    },
+    "available": {
+      "title": "Sayso {{version}} 現已可用",
+      "description": "新版本可以下載了。"
+    },
+    "downloading": {
+      "title": "正在下載 Sayso {{version}}…"
+    },
+    "ready": {
+      "title": "Sayso {{version}} 已準備好安裝",
+      "description": "重新啟動 Sayso 即可完成更新。"
+    },
+    "failed": {
+      "title": "更新失敗",
+      "description": "請檢查網路連線後再試一次。"
+    },
+    "actions": {
+      "ok": "好",
+      "download": "下載",
+      "later": "稍後",
+      "skip": "略過此版本",
+      "restart": "重新啟動",
+      "cancel": "取消"
+    }
+  },
+  "native": {
+    "menu": {
+      "about": "關於 {{name}}",
+      "checkForUpdates": "檢查更新…",
+      "settings": "設定…",
+      "services": "服務",
+      "hide": "隱藏 {{name}}",
+      "hideOthers": "隱藏其他",
+      "showAll": "顯示全部",
+      "quit": "結束 {{name}}",
+      "file": "檔案",
+      "closeWindow": "關閉視窗",
+      "edit": "編輯",
+      "undo": "還原",
+      "redo": "重做",
+      "cut": "剪下",
+      "copy": "複製",
+      "paste": "貼上",
+      "selectAll": "全選",
+      "view": "顯示方式",
+      "fullscreen": "切換全螢幕",
+      "window": "視窗",
+      "minimize": "縮到最小",
+      "zoom": "縮放",
+      "help": "輔助說明"
+    }
+  },
+  "nativeOnMacos": {
+    "menu": {
+      "copy": "拷貝"
+    }
+  }
+}

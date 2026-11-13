@@ -1,0 +1,78 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "overrides": [
+    {
+      "files": ["src/**"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@tauri-apps/**"],
+                "message": "Only src/services talks to the backend."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/components/**", "src/pages/**"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@tauri-apps/**"],
+                "message": "Only src/services talks to the backend."
+              },
+              {
+                "group": ["@/services/**"],
+                "allowTypeImports": true,
+                "message": "Components get data and actions from hooks; only service types may be imported."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/hooks/**"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@tauri-apps/**"],
+                "message": "Only src/services talks to the backend."
+              },
+              {
+                "group": ["@/components/**"],
+                "message": "Hooks do not reference components."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/services/**"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@/components/**", "@/hooks/**", "react"],
+                "message": "Services know nothing about the UI."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

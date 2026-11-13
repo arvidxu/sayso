@@ -20,7 +20,8 @@
     "lint": "pnpm --filter ./apps/desktop lint",
     "fmt": "pnpm --filter ./apps/desktop fmt",
     "fmt:check": "pnpm --filter ./apps/desktop fmt:check",
-    "check": "pnpm lint && pnpm fmt:check && pnpm build"
+    "check": "pnpm lint && pnpm fmt:check && pnpm test && pnpm build",
+    "test": "node --test apps/desktop/tests/*.test.ts"
   },
   "private": true
 }
