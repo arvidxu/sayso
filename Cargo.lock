@@ -583,6 +583,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "dictation-api"
+version = "0.1.0"
+dependencies = [
+ "dictation-api",
+ "dictation-types",
+]
+
+[[package]]
+name = "dictation-types"
+version = "0.1.0"
+
+[[package]]
 name = "digest"
 version = "0.10.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -770,6 +782,14 @@ checksum = "e35d6e78f4cebb90e51d543db8fe41528851d6deeef6ef21ebd4bfdc1e784776"
 dependencies = [
  "libc",
  "windows-sys 0.61.2",
+]
+
+[[package]]
+name = "extension"
+version = "0.1.0"
+dependencies = [
+ "dictation-api",
+ "dictation-types",
 ]
 
 [[package]]

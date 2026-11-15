@@ -1,11 +1,16 @@
 [workspace]
 resolver = "3"
-members = ["apps/desktop/src-tauri"]
+members = ["apps/desktop/src-tauri", "crates/*"]
 
 [workspace.package]
 edition = "2024"
 license = "AGPL-3.0-only"
 publish = false
+
+[workspace.dependencies]
+dictation-api = { path = "crates/dictation-api" }
+dictation-types = { path = "crates/dictation-types" }
+extension = { path = "crates/extension" }
 
 # Release builds are optimised for a small binary.
 [profile.release]
