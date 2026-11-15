@@ -8,6 +8,7 @@ license = "AGPL-3.0-only"
 publish = false
 
 [workspace.dependencies]
+configuration = { path = "crates/configuration" }
 dictation-api = { path = "crates/dictation-api" }
 dictation-types = { path = "crates/dictation-types" }
 extension = { path = "crates/extension" }

@@ -51,5 +51,16 @@
         "aarch64-unknown-linux-gnu": "ubuntu-24.04-arm"
       }
     }
+  },
+  "dictation": {
+    "initialSettings": {
+      "modelIdleUnloadSecs": 300,
+      "audioRetentionDays": 30,
+      "maxRecordingSecs": 600,
+      "outputTiming": "at-the-end",
+      "insertMethod": "paste-with-clipboard-restore",
+      "muteOtherAudioWhileRecording": false
+    },
+    "overrides": {}
   }
 }
