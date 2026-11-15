@@ -1,0 +1,30 @@
+{
+  "voiceDetection": {
+    "speechThreshold": 0.7,
+    "silenceThreshold": 0.5,
+    "minLoudness": 0.0002,
+    "levelTo": 0.05,
+    "levelWindowMs": 1000,
+    "minSpeechMs": 150,
+    "minSilenceMs": 300,
+    "padMs": 100
+  },
+  "capture": {
+    "streamTimeoutMs": 2000,
+    "deviceSwitchPollMs": 10,
+    "reopenIntervalMs": 50,
+    "levelWindowMs": 50,
+    "maxRecordingMs": 600000
+  },
+  "resampling": {
+    "blockFrames": 1024,
+    "minSampleRateHz": 8000,
+    "maxSampleRateHz": 384000
+  },
+  "segmentation": {
+    "gapMs": 0,
+    "minPartFractionOfTarget": 0.5,
+    "quietWindowMs": 10,
+    "targetFractionOfMax": 0.5
+  }
+}

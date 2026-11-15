@@ -13,6 +13,18 @@ const STRUCTURAL: &[&str] = &["0", "1", "2", "0.0", "1.0"];
 /// file it is registered for.
 const REGISTERED: &[(&str, &str, &str)] = &[
     (
+        "audio/src/speech_scorer.rs",
+        "16000",
+        "sample rate the voice activity model was trained on",
+    ),
+    (
+        "audio/src/speech_scorer.rs",
+        "256",
+        "frame length the voice activity model was trained on",
+    ),
+    ("audio/src/measure.rs", "1000", "milliseconds in a second"),
+    ("audio/src/config.rs", "1000", "milliseconds in a second"),
+    (
         "dictation-types/src/audio.rs",
         "1000",
         "milliseconds in a second",
