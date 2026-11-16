@@ -1,0 +1,89 @@
+{
+  "models": [
+    {
+      "id": "qwen3-asr-0.6b-int8",
+      "name": "Qwen3-ASR 0.6B",
+      "kind": "asr",
+      "engine": "sherpa-onnx",
+      "group": null,
+      "providedBySystem": false,
+      "namedPaths": {
+        "conv_frontend": "sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/conv_frontend.onnx",
+        "encoder": "sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/encoder.int8.onnx",
+        "decoder": "sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/decoder.int8.onnx",
+        "tokenizer": "sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25/tokenizer"
+      },
+      "engineSettings": {
+        "family": "qwen3-asr",
+        "sampleRateHz": 16000,
+        "featureDim": 80,
+        "maxAudioSecs": 30,
+        "languageMixing": "mixed",
+        "audioTokensPerSec": 13,
+        "promptTokens": 15,
+        "maxNewTokens": 256,
+        "maxTotalLen": 1024,
+        "temperature": 0.000001,
+        "topP": 0.8,
+        "seed": 42,
+        "supportsHotwords": "true",
+        "languageName.zh": "Chinese",
+        "languageName.en": "English",
+        "languageName.yue": "Cantonese",
+        "languageName.ar": "Arabic",
+        "languageName.de": "German",
+        "languageName.fr": "French",
+        "languageName.es": "Spanish",
+        "languageName.pt": "Portuguese",
+        "languageName.id": "Indonesian",
+        "languageName.it": "Italian",
+        "languageName.ko": "Korean",
+        "languageName.ru": "Russian",
+        "languageName.th": "Thai",
+        "languageName.vi": "Vietnamese",
+        "languageName.ja": "Japanese",
+        "languageName.tr": "Turkish",
+        "languageName.hi": "Hindi",
+        "languageName.ms": "Malay",
+        "languageName.nl": "Dutch",
+        "languageName.sv": "Swedish",
+        "languageName.da": "Danish",
+        "languageName.fi": "Finnish",
+        "languageName.pl": "Polish",
+        "languageName.cs": "Czech",
+        "languageName.fil": "Filipino",
+        "languageName.fa": "Persian",
+        "languageName.el": "Greek",
+        "languageName.hu": "Hungarian",
+        "languageName.mk": "Macedonian",
+        "languageName.ro": "Romanian"
+      },
+      "platforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64",
+        "windows-arm64",
+        "linux-x64",
+        "linux-arm64",
+        "ios-arm64",
+        "android-arm64"
+      ],
+      "languages": [
+        "zh", "en", "yue", "ar", "de", "fr", "es", "pt", "id", "it",
+        "ko", "ru", "th", "vi", "ja", "tr", "hi", "ms", "nl", "sv",
+        "da", "fi", "pl", "cs", "fil", "fa", "el", "hu", "mk", "ro"
+      ],
+      "files": [
+        {
+          "path": "sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25.tar.bz2",
+          "sizeBytes": 878702423,
+          "sha256": "393f8a14e2f5fb96746aaab342997a40641001fbd5bf9592a080a8329178ee96",
+          "downloadUrls": [
+            "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-qwen3-asr-0.6B-int8-2026-03-25.tar.bz2"
+          ],
+          "unpack": "tar.bz2"
+        }
+      ]
+    }
+  ]
+}

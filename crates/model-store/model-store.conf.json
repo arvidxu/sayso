@@ -1,0 +1,11 @@
+{
+  "download": {
+    "connectTimeoutMs": 15000,
+    "readTimeoutMs": 30000,
+    "bufferBytes": 262144,
+    "attemptsPerAddress": 3,
+    "retryDelayMs": 2000,
+    "unpackedSizeRatio": 1.5
+  },
+  "localCaches": []
+}

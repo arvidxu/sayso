@@ -13,6 +13,7 @@ configuration = { path = "crates/configuration" }
 dictation-api = { path = "crates/dictation-api" }
 dictation-types = { path = "crates/dictation-types" }
 extension = { path = "crates/extension" }
+model-store = { path = "crates/model-store" }
 
 # Release builds are optimised for a small binary.
 [profile.release]

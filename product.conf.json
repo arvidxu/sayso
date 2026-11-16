@@ -61,6 +61,15 @@
       "insertMethod": "paste-with-clipboard-restore",
       "muteOtherAudioWhileRecording": false
     },
-    "overrides": {}
+    "overrides": {
+      "model-store": {
+        "localCaches": [
+          { "envVar": "HF_HUB_CACHE", "subPath": "", "filePattern": "*/blobs/{sha256}" },
+          { "envVar": "HF_HOME", "subPath": "hub", "filePattern": "*/blobs/{sha256}" },
+          { "envVar": "XDG_CACHE_HOME", "subPath": "huggingface/hub", "filePattern": "*/blobs/{sha256}" },
+          { "envVar": null, "subPath": ".cache/huggingface/hub", "filePattern": "*/blobs/{sha256}" }
+        ]
+      }
+    }
   }
 }

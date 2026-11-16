@@ -33,6 +33,7 @@ fn the_shipped_file_overrides_only_objects() {
     let overrides = file["dictation"]["overrides"]
         .as_object()
         .expect("the product file has overrides");
+    assert!(!overrides.is_empty());
     for (name, value) in overrides {
         assert!(value.is_object(), "{name}");
     }
