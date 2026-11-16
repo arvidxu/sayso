@@ -94,6 +94,16 @@ const REGISTERED: &[(&str, &str, &str)] = &[
         "24",
         "highest function key keyboards define",
     ),
+    (
+        "platform-macos/src/insertion.rs",
+        "20",
+        "most UTF-16 code units macOS takes in one typed keyboard event",
+    ),
+    (
+        "platform-macos/src/keyboard.rs",
+        "0x53415953",
+        "a mark for the package's own keyboard events; any number no other program uses works",
+    ),
 ];
 
 /// Reference tables, named like the registered files: data, not code. Every number in them
@@ -103,6 +113,7 @@ const DATA_FILES: &[&str] = &[
     "dictation-types/src/mark_data.rs",
     "dictation-types/src/punctuation_data.rs",
     "dictation-types/src/script_data.rs",
+    "platform-macos/src/keys_data.rs",
 ];
 
 /// The folder of the desktop app's own Rust code, relative to the repository.

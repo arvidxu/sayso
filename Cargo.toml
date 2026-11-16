@@ -16,6 +16,7 @@ dictation-types = { path = "crates/dictation-types" }
 engine-worker = { path = "crates/engine-worker" }
 extension = { path = "crates/extension" }
 model-store = { path = "crates/model-store" }
+platform-macos = { path = "crates/platform-macos" }
 
 # Release builds are optimised for a small binary.
 [profile.release]

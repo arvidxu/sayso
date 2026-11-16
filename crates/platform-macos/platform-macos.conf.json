@@ -1,0 +1,7 @@
+{
+  "insertion": {
+    "restoreQuietAfterReadMs": 200,
+    "restoreUnreadTimeoutMs": 8000,
+    "restoreAfterFailedPasteMs": 500
+  }
+}
