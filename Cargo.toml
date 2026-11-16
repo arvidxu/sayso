@@ -8,10 +8,12 @@ license = "AGPL-3.0-only"
 publish = false
 
 [workspace.dependencies]
+asr-local = { path = "crates/asr-local" }
 audio = { path = "crates/audio" }
 configuration = { path = "crates/configuration" }
 dictation-api = { path = "crates/dictation-api" }
 dictation-types = { path = "crates/dictation-types" }
+engine-worker = { path = "crates/engine-worker" }
 extension = { path = "crates/extension" }
 model-store = { path = "crates/model-store" }
 

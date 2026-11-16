@@ -1,0 +1,6 @@
+{
+  "threadShare": 0.5,
+  "executionProvider": "cpu",
+  "loadTimeoutMs": 120000,
+  "workerParentCheckMs": 1000
+}

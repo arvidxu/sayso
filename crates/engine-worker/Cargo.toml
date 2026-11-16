@@ -1,0 +1,40 @@
+[package]
+name = "engine-worker"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+asr-local.workspace = true
+dictation-types.workspace = true
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+
+# Engines are opt-in features; none is on by default.
+[features]
+sherpa-onnx = ["asr-local/sherpa-onnx"]
+
+[dev-dependencies]
+audio.workspace = true
+dictation-api = { workspace = true, features = ["fakes"] }
+model-store.workspace = true
+
+# The test starts itself as the worker process, so it needs its own entry point.
+[[test]]
+name = "worker_process"
+harness = false
+
+[[example]]
+name = "transcribe_files"
+required-features = ["sherpa-onnx"]
+
+[[example]]
+name = "evaluate"
+required-features = ["sherpa-onnx"]
+
+[target."cfg(unix)".dependencies]
+libc = "0.2.191"
+
+[target."cfg(windows)".dependencies]
+windows-sys = { version = "0.61.2", features = ["Win32_Foundation", "Win32_Security", "Win32_System_JobObjects", "Win32_System_Threading"] }

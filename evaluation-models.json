@@ -1,0 +1,317 @@
+{
+  "models": [
+    {
+      "id": "sense-voice-small-int8",
+      "name": "SenseVoice Small",
+      "kind": "asr",
+      "engine": "sherpa-onnx",
+      "group": null,
+      "providedBySystem": false,
+      "namedPaths": {
+        "model": "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09/model.int8.onnx",
+        "tokens": "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09/tokens.txt"
+      },
+      "engineSettings": {
+        "family": "sense-voice",
+        "sampleRateHz": 16000,
+        "maxAudioSecs": 30,
+        "languageMixing": "auto-detect-one",
+        "useItn": "true"
+      },
+      "platforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64",
+        "windows-arm64",
+        "linux-x64",
+        "linux-arm64",
+        "ios-arm64",
+        "android-arm64"
+      ],
+      "languages": [
+        "zh",
+        "en",
+        "ja",
+        "ko",
+        "yue"
+      ],
+      "files": [
+        {
+          "path": "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2",
+          "sizeBytes": 165783878,
+          "sha256": "7305f7905bfcf77fa0b39388a313f3da35c68d971661a65475b56fb2162c8e63",
+          "downloadUrls": [
+            "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2025-09-09.tar.bz2"
+          ],
+          "unpack": "tar.bz2"
+        }
+      ]
+    },
+    {
+      "id": "parakeet-tdt-0.6b-v3-int8",
+      "name": "Parakeet TDT 0.6B v3",
+      "kind": "asr",
+      "engine": "sherpa-onnx",
+      "group": null,
+      "providedBySystem": false,
+      "namedPaths": {
+        "encoder": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8/encoder.int8.onnx",
+        "decoder": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8/decoder.int8.onnx",
+        "joiner": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8/joiner.int8.onnx",
+        "tokens": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8/tokens.txt"
+      },
+      "engineSettings": {
+        "family": "nemo-transducer",
+        "sampleRateHz": 16000,
+        "maxAudioSecs": 30,
+        "languageMixing": "auto-detect-one",
+        "decodingMethod": "greedy_search"
+      },
+      "platforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64",
+        "windows-arm64",
+        "linux-x64",
+        "linux-arm64",
+        "ios-arm64",
+        "android-arm64"
+      ],
+      "languages": [
+        "bg",
+        "hr",
+        "cs",
+        "da",
+        "nl",
+        "en",
+        "et",
+        "fi",
+        "fr",
+        "de",
+        "el",
+        "hu",
+        "it",
+        "lv",
+        "lt",
+        "mt",
+        "pl",
+        "pt",
+        "ro",
+        "sk",
+        "sl",
+        "es",
+        "sv",
+        "ru",
+        "uk"
+      ],
+      "files": [
+        {
+          "path": "sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8.tar.bz2",
+          "sizeBytes": 487211443,
+          "sha256": "1495e91b59d7fc53ddca91f3431758ec99f8fa253fdb0e1e851be0f72b14b0f9",
+          "downloadUrls": [
+            "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-nemo-parakeet-tdt-0.6b-v3-int8.tar.bz2"
+          ],
+          "unpack": "tar.bz2"
+        }
+      ]
+    },
+    {
+      "id": "whisper-large-v3-turbo-int8",
+      "name": "Whisper large-v3-turbo",
+      "kind": "asr",
+      "engine": "sherpa-onnx",
+      "group": null,
+      "providedBySystem": false,
+      "namedPaths": {
+        "encoder": "sherpa-onnx-whisper-turbo/turbo-encoder.int8.onnx",
+        "decoder": "sherpa-onnx-whisper-turbo/turbo-decoder.int8.onnx",
+        "tokens": "sherpa-onnx-whisper-turbo/turbo-tokens.txt"
+      },
+      "engineSettings": {
+        "family": "whisper",
+        "sampleRateHz": 16000,
+        "maxAudioSecs": 30,
+        "languageMixing": "auto-detect-one",
+        "tailPaddings": 300
+      },
+      "platforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64",
+        "windows-arm64",
+        "linux-x64",
+        "linux-arm64",
+        "ios-arm64",
+        "android-arm64"
+      ],
+      "languages": [
+        "en",
+        "zh",
+        "de",
+        "es",
+        "ru",
+        "ko",
+        "fr",
+        "ja",
+        "pt",
+        "tr",
+        "pl",
+        "ca",
+        "nl",
+        "ar",
+        "sv",
+        "it",
+        "id",
+        "hi",
+        "fi",
+        "vi",
+        "he",
+        "uk",
+        "el",
+        "ms",
+        "cs",
+        "ro",
+        "da",
+        "hu",
+        "ta",
+        "no",
+        "th",
+        "ur",
+        "hr",
+        "bg",
+        "lt",
+        "la",
+        "mi",
+        "ml",
+        "cy",
+        "sk",
+        "te",
+        "fa",
+        "lv",
+        "bn",
+        "sr",
+        "az",
+        "sl",
+        "kn",
+        "et",
+        "mk",
+        "br",
+        "eu",
+        "is",
+        "hy",
+        "ne",
+        "mn",
+        "bs",
+        "kk",
+        "sq",
+        "sw",
+        "gl",
+        "mr",
+        "pa",
+        "si",
+        "km",
+        "sn",
+        "yo",
+        "so",
+        "af",
+        "oc",
+        "ka",
+        "be",
+        "tg",
+        "sd",
+        "gu",
+        "am",
+        "yi",
+        "lo",
+        "uz",
+        "fo",
+        "ht",
+        "ps",
+        "tk",
+        "nn",
+        "mt",
+        "sa",
+        "lb",
+        "my",
+        "bo",
+        "tl",
+        "mg",
+        "as",
+        "tt",
+        "haw",
+        "ln",
+        "ha",
+        "ba",
+        "jw",
+        "su",
+        "yue"
+      ],
+      "files": [
+        {
+          "path": "sherpa-onnx-whisper-turbo.tar.bz2",
+          "sizeBytes": 563790207,
+          "sha256": "b11acbbcd660b44a8e0df33724feb5aaa709cf65668f2823d59f656312544f22",
+          "downloadUrls": [
+            "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-whisper-turbo.tar.bz2"
+          ],
+          "unpack": "tar.bz2"
+        }
+      ]
+    },
+    {
+      "id": "funasr-nano-int8",
+      "name": "Fun-ASR-Nano",
+      "kind": "asr",
+      "engine": "sherpa-onnx",
+      "group": null,
+      "providedBySystem": false,
+      "namedPaths": {
+        "encoder_adaptor": "sherpa-onnx-funasr-nano-int8-2025-12-30/encoder_adaptor.int8.onnx",
+        "llm": "sherpa-onnx-funasr-nano-int8-2025-12-30/llm.int8.onnx",
+        "embedding": "sherpa-onnx-funasr-nano-int8-2025-12-30/embedding.int8.onnx",
+        "tokenizer": "sherpa-onnx-funasr-nano-int8-2025-12-30/Qwen3-0.6B"
+      },
+      "engineSettings": {
+        "family": "funasr-nano",
+        "sampleRateHz": 16000,
+        "maxAudioSecs": 30,
+        "languageMixing": "mixed",
+        "systemPrompt": "You are a helpful assistant.",
+        "userPrompt": "语音转写：",
+        "maxNewTokens": 512,
+        "temperature": 1e-06,
+        "topP": 0.8,
+        "seed": 42,
+        "useItn": "true"
+      },
+      "platforms": [
+        "macos-arm64",
+        "macos-x64",
+        "windows-x64",
+        "windows-arm64",
+        "linux-x64",
+        "linux-arm64",
+        "ios-arm64",
+        "android-arm64"
+      ],
+      "languages": [
+        "zh",
+        "en",
+        "ja",
+        "yue"
+      ],
+      "files": [
+        {
+          "path": "sherpa-onnx-funasr-nano-int8-2025-12-30.tar.bz2",
+          "sizeBytes": 841730611,
+          "sha256": "eb43d7ccc2e86b243f6a03b7df361033dda66db9523d1a92bf6aca2b50c9476b",
+          "downloadUrls": [
+            "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-funasr-nano-int8-2025-12-30.tar.bz2"
+          ],
+          "unpack": "tar.bz2"
+        }
+      ]
+    }
+  ]
+}

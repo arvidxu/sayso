@@ -21,7 +21,7 @@
     "fmt": "pnpm --filter ./apps/desktop fmt",
     "fmt:check": "pnpm --filter ./apps/desktop fmt:check",
     "check": "pnpm lint && pnpm fmt:check && pnpm test && pnpm build",
-    "test": "node --test scripts/release/*.test.mjs apps/desktop/tests/*.test.ts"
+    "test": "node --test scripts/release/*.test.mjs scripts/engine-library/*.test.mjs scripts/evaluation/*.test.mjs apps/desktop/tests/*.test.ts"
   },
   "private": true
 }

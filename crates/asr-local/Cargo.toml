@@ -1,0 +1,24 @@
+[package]
+name = "asr-local"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+configuration.workspace = true
+dictation-api.workspace = true
+dictation-types.workspace = true
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+sherpa-onnx = { version = "2.0.1", optional = true }
+unicode-segmentation = "1.13.3"
+
+# Each recognition engine is an opt-in feature; none is on by default.
+[features]
+sherpa-onnx = ["dep:sherpa-onnx"]
+
+[dev-dependencies]
+dictation-api = { workspace = true, features = ["fakes"] }
+model-store.workspace = true
+

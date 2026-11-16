@@ -1,0 +1,4 @@
+# Engines take their prebuilt library from this folder and never download it themselves;
+# `node scripts/engine-library/fetch.mjs` fills it.
+[env]
+SHERPA_ONNX_ARCHIVE_DIR = { value = "target/engine-libraries", relative = true }

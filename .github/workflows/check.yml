@@ -117,6 +117,14 @@ jobs:
         run: mkdir apps/desktop/dist
         shell: bash
 
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: package.json
+
+      # The build takes engine libraries from a folder and never downloads them itself.
+      - name: Fetch and verify the engine libraries
+        run: node scripts/engine-library/fetch.mjs
+
       - name: Format
         run: cargo fmt --all --check
 

@@ -25,6 +25,11 @@ const REGISTERED: &[(&str, &str, &str)] = &[
     ("audio/src/measure.rs", "1000", "milliseconds in a second"),
     ("audio/src/config.rs", "1000", "milliseconds in a second"),
     (
+        "asr-local/src/engine.rs",
+        "1000",
+        "milliseconds in a second",
+    ),
+    (
         "model-store/src/catalog.rs",
         "4",
         "length of the device names Windows keeps, such as COM1",
